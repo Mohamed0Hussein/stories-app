@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stories App
+
+A simple Next.js app for viewing and uploading stories, similar to Instagram or Snapchat stories.
+
+## Features
+
+- View stories in a horizontally scrollable bar
+- Click a story to view it in full screen with progress bar
+- Upload new stories (images)
+- Responsive design for desktop and mobile
+- Drag and touch scroll for story bar
+- **Stories are stored in MongoDB**
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js (v18+ recommended)
+- npm or yarn
+- **MongoDB database** (local or cloud, e.g. MongoDB Atlas)
+
+### Installation
+
+```bash
+npm install
+# or
+yarn install
+```
+
+### Environment Variables
+
+Create a `.env.local` file and add your MongoDB connection string:
+
+```
+MONGODB_URI=your_mongodb_connection_string
+```
+
+### Running the Development Server
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `components/StoriesViewer.tsx` – Main stories viewer component
+- `components/Button.tsx` – Reusable button component
+- `pages/api/stories.ts` – API route for fetching and uploading stories (uses MongoDB)
+- `app/page.tsx` – Main page rendering the stories viewer
 
-## Learn More
+## Usage
 
-To learn more about Next.js, take a look at the following resources:
+- Click the "Add Story" button to upload a new image story.
+- Click any story in the bar to view it.
+- Use left/right arrows or click/tap sides to navigate between stories.
+- Stories auto-progress unless paused.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Customization
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Update styles in `globals.css` or Tailwind config.
+- Extend story data model as needed.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
