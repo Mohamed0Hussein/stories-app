@@ -22,7 +22,7 @@ export async function POST(request: Request) {
   const db = client.db("storiesDB");
 
   const uploadedAt = new Date(body.uploadedAt);
-  const expiresAt = new Date(uploadedAt.getTime() + 10 * 1000);
+  const expiresAt = new Date(uploadedAt.getTime() + 24 * 60 * 60 * 1000); // 24 hours
 
   const story = {
     img: body.img,
@@ -31,7 +31,7 @@ export async function POST(request: Request) {
   };
   const result = await db.collection("stories").insertOne(story);
 
-  await db.collection("stories").createIndex({ createdAt: 1 },{ expireAfterSeconds: 60 * 60 * 24 } );
+  await db.collection("stories").createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 });
 
   return NextResponse.json({ _id: result.insertedId, ...story });
 }
