@@ -104,7 +104,7 @@ const StoriesViewer = () => {
           body: JSON.stringify({
             img: reader.result,
             uploadedAt: new Date(),
-            endsAt: new Date(Date.now() + 24 * 60 * 60 * 1000),
+            expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000),
           }),
         })
 
@@ -124,6 +124,22 @@ const StoriesViewer = () => {
 
     reader.readAsDataURL(file)
     e.target.value = ''
+  }
+
+  async function handleDeleteStory(id: string) {
+    try {
+      await fetch('/api/stories', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      })
+
+      const updatedStories = await fetch('/api/stories').then(res => res.json())
+      setStories(updatedStories)
+      if (activeStory?._id === id) closeOverlay()
+    } catch (error) {
+      console.error('Failed to delete story:', error)
+    }
   }
 
   const formatTime = (dateString: string) => {
@@ -289,6 +305,12 @@ const StoriesViewer = () => {
                 className="text-white hover:text-gray-300 transition-colors p-1 rounded-full hover:bg-white/10 text-xl md:text-2xl"
               >
                 ✕
+              </button>
+              <button
+                onClick={() => handleDeleteStory(activeStory._id)}
+                className="text-red-500 hover:text-red-700 transition-colors p-1 rounded-full hover:bg-red-100 text-base md:text-lg ml-2"
+              >
+                🗑
               </button>
             </div>
           </div>
