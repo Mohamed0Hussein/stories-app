@@ -296,19 +296,19 @@ const StoriesViewer = () => {
             <div className="flex items-center gap-2 md:gap-3">
               <button
                 onClick={() => setIsPaused(!isPaused)}
-                className="text-white hover:text-gray-300 transition-colors p-1 rounded-full hover:bg-white/10 text-lg md:text-xl"
+                className="text-white hover:text-gray-300 transition-colors p-1 rounded-full hover:bg-white/10 text-lg md:text-xl cursor-pointer"
               >
                 {isPaused ? '▶' : '⏸'}
               </button>
               <button
                 onClick={closeOverlay}
-                className="text-white hover:text-gray-300 transition-colors p-1 rounded-full hover:bg-white/10 text-xl md:text-2xl"
+                className="text-white hover:text-gray-300 transition-colors p-1 rounded-full hover:bg-white/10 text-xl md:text-2xl cursor-pointer"
               >
                 ✕
               </button>
               <button
                 onClick={() => handleDeleteStory(activeStory._id)}
-                className="text-red-500 hover:text-red-700 transition-colors p-1 rounded-full hover:bg-red-100 text-base md:text-lg ml-2"
+                className="text-red-500 hover:text-red-700 transition-colors p-1 rounded-full hover:bg-red-100 text-base md:text-lg ml-2 cursor-pointer"
               >
                 🗑
               </button>
